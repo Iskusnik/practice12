@@ -51,8 +51,8 @@ namespace practice12
                     if (arr[i] < arr[i - 1])
                     {
                         temp = arr[i];
-                        arr[i] = arr[i + 1];
-                        arr[i + 1] = temp;
+                        arr[i] = arr[i - 1];
+                        arr[i - 1] = temp;
                         swaps++;
                     }
                 }
