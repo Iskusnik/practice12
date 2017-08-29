@@ -20,8 +20,51 @@ namespace practice12
         /// 
 
 
-        static int[] BinTreeSort(int[] arr)
+        static int[] BinTreeSort(int[] arr, out int compar, out int swps)
         {
+            TreeNode top = new TreeNode(arr[0]);
+            TreeNode mark = top;
+            bool check = false;
+            int compares = 0, swaps = 0;
+
+            #region Создание дерева
+            for (int i = 1; i < arr.Length; i++)
+            {
+                mark = top;
+                while (!check)
+                {
+                    if (arr[i] <= mark.info)
+                    {
+                        swaps++;
+                        if (mark.left == null)
+                        {
+                            mark.left = new TreeNode(arr[i], mark);
+                            check = true;
+                            swaps++;
+                        }
+                        else
+                            mark = mark.left;
+                    }
+                    else
+                        if (mark.right == null)
+                    {
+                        swaps++;
+                        mark.right = new TreeNode(arr[i], mark);
+                        check = true;
+                        swaps++;
+                    }
+                    else
+                        mark = mark.right;
+                }
+            }
+            #endregion
+
+            #region Сбор дерева
+
+            #endregion
+
+            swps = swaps;
+            compar = compares;
             return arr;
         }
 
