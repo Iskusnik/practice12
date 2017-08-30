@@ -60,7 +60,10 @@ namespace practice12
             #endregion
 
             #region Сбор дерева
-
+            for (int i = 1; i < arr.Length; i++)
+            {
+                
+            }
             #endregion
 
             swps = swaps;
