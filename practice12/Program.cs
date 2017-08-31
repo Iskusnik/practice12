@@ -31,11 +31,13 @@ namespace practice12
             for (int i = 1; i < arr.Length; i++)
             {
                 mark = top;
+                check = false;
+
                 while (!check)
                 {
                     if (arr[i] <= mark.info)
                     {
-                        swaps++;
+                        compares++;
                         if (mark.left == null)
                         {
                             mark.left = new TreeNode(arr[i], mark);
@@ -48,7 +50,6 @@ namespace practice12
                     else
                         if (mark.right == null)
                     {
-                        swaps++;
                         mark.right = new TreeNode(arr[i], mark);
                         check = true;
                         swaps++;
@@ -56,13 +57,42 @@ namespace practice12
                     else
                         mark = mark.right;
                 }
+                check = false;
             }
             #endregion
 
             #region Сбор дерева
-            for (int i = 1; i < arr.Length; i++)
+            mark = top;
+            for (int i = 0; i < arr.Length; i++)
             {
-                
+                check = false;
+
+                while (!check)
+                {
+                    if (mark.left != null && !mark.left.visited)
+                        mark = mark.left;
+                    else
+                        if (mark.right != null && !mark.right.visited)
+                    {
+                        swaps++;
+                        arr[i] = mark.info;
+                        mark.visited = true;
+
+                        mark = mark.right;
+                        check = true;
+                    }
+                    else
+                    {
+                        swaps++;
+                        arr[i] = mark.info;
+                        mark.visited = true;
+
+                        mark = mark.father;
+                        check = true;
+                    }
+                }
+
+
             }
             #endregion
 

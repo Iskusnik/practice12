@@ -12,10 +12,12 @@ namespace practice12
         public TreeNode left { get; set; }
         public TreeNode right { get; set; }
         public TreeNode father { get; set; }
+        public bool visited { get; set; }
         public TreeNode(int info, TreeNode father = null)
         {
             this.info = info;
             this.father = father;
+            visited = false;
         }
     }
 }
