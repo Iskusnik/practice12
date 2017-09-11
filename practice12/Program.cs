@@ -74,21 +74,23 @@ namespace practice12
                     else
                         if (mark.right != null && !mark.right.visited)
                     {
+
                         swaps++;
                         arr[i] = mark.info;
                         mark.visited = true;
-
                         mark = mark.right;
                         check = true;
                     }
                     else
                     {
-                        swaps++;
-                        arr[i] = mark.info;
-                        mark.visited = true;
-
+                        if (!mark.visited)
+                        {
+                            swaps++;
+                            arr[i] = mark.info;
+                            mark.visited = true;
+                            check = true;
+                        }
                         mark = mark.father;
-                        check = true;
                     }
                 }
 
@@ -176,14 +178,85 @@ namespace practice12
             Console.Clear();
             PrintArray(info);
 
+            
             Console.WriteLine("Любая клавиша для продолжения");
             Console.ReadKey();
 
+            #region Сортировка неупорядоченного массива
             Console.WriteLine("Сортировка неупорядоченного массива");
-            Console.WriteLine("Сортировка перемешиванием");
-
-            info = CocktailSort(info, out compares, out swaps);
+            Console.WriteLine("Исходный массив");
             PrintArray(info);
+            Console.WriteLine("");
+
+            Console.WriteLine("Сортировка перемешиванием");
+            sort1 = CocktailSort(sort1, out compares, out swaps);
+            PrintArray(sort1);
+            Console.WriteLine("Сравнений - {0}, перестановок - {1}", compares, swaps);
+
+            Console.WriteLine("");
+
+            Console.WriteLine("Сортировка бинарным дереовом");
+            sort2 = BinTreeSort(sort2, out compares, out swaps);
+            PrintArray(sort2);
+            Console.WriteLine("Сравнений - {0}, перестановок - {1}", compares, swaps);
+
+            Console.WriteLine("Любая клавиша для продолжения");
+            Console.ReadKey();
+            #endregion
+
+            #region Сортировка упорядоченного по возрастанию массива
+            Console.WriteLine("Сортировка упорядоченного по возрастанию массива");
+            for (int i = 0; i < n; i++)
+            {
+                info[i] = i;
+                sort1[i] = info[i];
+                sort2[i] = info[i];
+            }
+            Console.WriteLine("Исходный массив");
+            PrintArray(info);
+            Console.WriteLine("");
+
+            Console.WriteLine("Сортировка перемешиванием");
+            sort1 = CocktailSort(sort1, out compares, out swaps);
+            PrintArray(sort1);
+            Console.WriteLine("Сравнений - {0}, перестановок - {1}", compares, swaps);
+
+            Console.WriteLine("");
+
+            Console.WriteLine("Сортировка бинарным дереовом");
+            sort2 = BinTreeSort(sort2, out compares, out swaps);
+            PrintArray(sort2);
+            Console.WriteLine("Сравнений - {0}, перестановок - {1}", compares, swaps);
+            Console.WriteLine("Любая клавиша для продолжения");
+            Console.ReadKey();
+            #endregion
+
+            #region Сортировка упорядоченного по убыванию массива
+            Console.WriteLine("Сортировка упорядоченного по убыванию массива");
+            for (int i = 0; i < n; i++)
+            {
+                info[i] = -i;
+                sort1[i] = info[i];
+                sort2[i] = info[i];
+            }
+            Console.WriteLine("Исходный массив");
+            PrintArray(info);
+            Console.WriteLine("");
+
+            Console.WriteLine("Сортировка перемешиванием");
+            sort1 = CocktailSort(sort1, out compares, out swaps);
+            PrintArray(sort1);
+            Console.WriteLine("Сравнений - {0}, перестановок - {1}", compares, swaps);
+
+            Console.WriteLine("");
+
+            Console.WriteLine("Сортировка бинарным дереовом");
+            sort2 = BinTreeSort(sort2, out compares, out swaps);
+            PrintArray(sort2);
+            Console.WriteLine("Сравнений - {0}, перестановок - {1}", compares, swaps);
+            Console.WriteLine("Любая клавиша для завершения");
+            Console.ReadKey();
+            #endregion
 
         }
     }
